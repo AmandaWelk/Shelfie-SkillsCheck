@@ -1,0 +1,19 @@
+.Header {
+    width: 100vw;
+    height: 10vh;
+    color: White;
+    background-color: #AB2A19;
+    display: flex;
+    position: sticky;
+}
+
+.logo {
+    height: 55px;
+    margin-top: 13px;
+    margin-left: 70px;
+}
+
+h1 {
+    margin-left: 40px;
+    font-weight: 500;
+}
