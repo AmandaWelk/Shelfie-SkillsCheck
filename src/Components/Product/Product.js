@@ -8,7 +8,7 @@ function Product(props) {
             <div>
                 <div className="productNP">
                     <p>{props.addedProduct.name}</p>
-                    <p>{props.addedProduct.price}</p>
+                    <p>{`$ ${props.addedProduct.price}`}</p>
                 </div> 
             </div>    
         </div>

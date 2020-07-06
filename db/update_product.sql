@@ -1,0 +1,1 @@
+UPDATE products SET image_url = ${image_url}, name = ${name}, price = ${price} WHERE id = ${id};

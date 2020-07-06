@@ -2,7 +2,6 @@ module.exports = {
     create: (req, res) => {
         const db = req.app.get('db');
         const {image_url, name, price} = req.body;
-        const {id} = req.params;
 
         db.create_product([image_url, name, price]) 
         .then(() => res.sendStatus(200))
@@ -49,7 +48,6 @@ module.exports = {
 
     delete: (req, res) => {
         const db = req.app.get('db');
-        const {image_url, name, price} = req.body;
         const {id} = req.params;
 
         db.delete_product([id])

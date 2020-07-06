@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './form.css'
+import axios from 'axios';
 
 class Form extends Component {
     constructor(props) {
@@ -8,7 +9,8 @@ class Form extends Component {
         this.state = {
            image_url: '',
            name: '',
-           price: '0'
+           price: '0',
+           id: null
         }
     }
 
@@ -35,18 +37,37 @@ class Form extends Component {
     }
 
     addProduct() {
-        let addedProducts = this.props.inventory.slice();
-        addedProducts.push({image: this.state.image_url, name: this.state.name, price: this.state.price});
+        const addedProduct = {
+            image_url: this.state.image_url,
+            name: this.state.name,
+            price: this.state.price
+        };
 
-        this.props({inventory: addedProducts})
+        axios.post('/api/product', addedProduct)
+        .then((res) => {
+            this.setState({addedProduct: res.data})
+        });
     }
+
+    // addProduct() {
+    //     let addedProducts = this.props.inventory.slice();
+    //     addedProducts.push({image: this.state.image_url, name: this.state.name, price: this.state.price});
+
+    //     this.props({inventory: addedProducts})
+    // }
 
     render() {
         console.log(this.props.inventory)
         return(
             <div className="form">
+                <div className="form-image">
+                    {(this.state.image_url) ?
+                        <img height='200px' width='300px' src={this.state.image_url} alt={this.state.name}/>
+                        :
+                        <img height='200px' width='300px' src="https://www.freeiconspng.com/uploads/no-image-icon-11.PNG" alt="default"/>
+                    }
+                </div>
                 <form id="form">
-                <div className="form-image"></div>
                 <p id="ptags">Image URL:</p>
                 <input id="input-line" type="text" onChange={(event) => this.handleImageInput(event)} value={this.state.image_url}/>
                 <p id="ptags">Product Name:</p>
