@@ -45,8 +45,15 @@ class Form extends Component {
 
         axios.post('/api/product', addedProduct)
         .then((res) => {
-            this.setState({addedProduct: res.data})
-        });
+            
+            });
+            this.props.getProductInventory()
+            .then(() => {
+                this.resetState();
+            })
+        .catch((err) => {
+            console.log(err);
+        })
     }
 
     // addProduct() {
@@ -61,7 +68,8 @@ class Form extends Component {
         return(
             <div className="form">
                 <div className="form-image">
-                    {(this.state.image_url) ?
+                    {(this.state.image_url) 
+                        ?
                         <img height='200px' width='300px' src={this.state.image_url} alt={this.state.name}/>
                         :
                         <img height='200px' width='300px' src="https://www.freeiconspng.com/uploads/no-image-icon-11.PNG" alt="default"/>

@@ -20,8 +20,8 @@ massive({
 app.use(express.json());
 
 app.post('/api/product', controller.create);
-app.get('/api/inventory', controller.getAll);
 app.get('/api/inventory/:id', controller.getOne);
+app.get('/api/inventory', controller.getProductInventory);
 app.put('/api/inventory/:id', controller.update);
 app.delete('/api/inventory/:id', controller.delete);
 
