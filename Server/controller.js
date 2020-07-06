@@ -15,7 +15,7 @@ module.exports = {
     getAll: (req, res) => {
         const db = req.app.get('db');
 
-        db.read_products()
+        db.get_inventory()
         .then(products => res.status(200).send(products))
         .catch(err => {
             res.status(500).send({errorMessage: "Error. Try Again!"});
@@ -23,10 +23,23 @@ module.exports = {
         });
     },
 
+    getOne: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+
+        db.get_product([id])
+        .then(products => res.status(200).send(products))
+        .catch(err => {
+            res.status(500).send({errorMessage: "Error. Try Again!"});
+        })
+    },
+
     update: (req, res) => {
         const db = req.app.get('db');
+        const {image_url, name, price} = req.body;
+        const {id} = req.params;
 
-        db.update_products()
+        db.update_products([id, image_url, name, price])
         .then(() => res.sendStatus(200))
         .catch(err => {
             res.status(500).send({errorMessage: "Error. Try Again!"});
@@ -36,9 +49,10 @@ module.exports = {
 
     delete: (req, res) => {
         const db = req.app.get('db');
+        const {image_url, name, price} = req.body;
         const {id} = req.params;
 
-        db.delete_product(id)
+        db.delete_product([id])
         .then(() => res.sendStatus(200))
         .catch(err => {
             res.status(500).send({errorMessage: "Error. Try Again!"});

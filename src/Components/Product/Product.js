@@ -1,13 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
+import './product.css';
 
-class Product extends Component {
-    render() {
-        return(
+function Product(props) {
+    return(
+        <div className="productContainer">
+            <img src={props.addedProduct.image_url} alt={props.addedProduct.name} className="productImage"/>
             <div>
-                <div>Product</div>
-            </div>
-        )
-    }
+                <div className="productNP">
+                    <p>{props.addedProduct.name}</p>
+                    <p>{props.addedProduct.price}</p>
+                </div> 
+            </div>    
+        </div>
+    )
 }
 
 export default Product;

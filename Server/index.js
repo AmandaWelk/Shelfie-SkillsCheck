@@ -19,10 +19,11 @@ massive({
 
 app.use(express.json());
 
-app.post('/api/products', controller.create);
-app.get('/api/products', controller.getAll);
-app.put('/api/products/:id', controller.update);
-app.delete('/api/products/:id', controller.delete);
+app.post('/api/inventory', controller.create);
+app.get('/api/inventory', controller.getAll);
+app.get('/api/inventory/:id', controller.getOne);
+app.put('/api/inventory/:id', controller.update);
+app.delete('/api/inventory/:id', controller.delete);
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port ${SERVER_PORT}.`);
