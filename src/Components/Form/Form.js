@@ -36,32 +36,12 @@ class Form extends Component {
         document.getElementById("form").reset();
     }
 
-    addProduct() {
-        const addedProduct = {
-            image_url: this.state.image_url,
-            name: this.state.name,
-            price: this.state.price
-        };
+    addProduct = () => {
+        axios.post('/api/product', {image_url: this.state.image_url, name: this.state.name, price: this.state.price})
+        .then(() => this.props.getProductInventory())
+        .catch(err => console.log(err))
+    }  
 
-        axios.post('/api/product', addedProduct)
-        .then((res) => {
-            
-            });
-            this.props.getProductInventory()
-            .then(() => {
-                this.resetState();
-            })
-        .catch((err) => {
-            console.log(err);
-        })
-    }
-
-    // addProduct() {
-    //     let addedProducts = this.props.inventory.slice();
-    //     addedProducts.push({image: this.state.image_url, name: this.state.name, price: this.state.price});
-
-    //     this.props({inventory: addedProducts})
-    // }
 
     render() {
         console.log(this.props.inventory)

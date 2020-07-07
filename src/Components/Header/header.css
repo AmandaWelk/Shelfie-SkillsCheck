@@ -5,6 +5,8 @@
     background-color: #AB2A19;
     display: flex;
     position: sticky;
+    position: -webkit-sticky;
+    top: 0;
 }
 
 .logo {

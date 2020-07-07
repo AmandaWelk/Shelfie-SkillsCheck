@@ -9,6 +9,8 @@
     margin-top: 80px;
     margin-right: 70px;
     position: sticky;
+    position: -webkit-sticky;
+    top: 165px;
     font-size: 18px;
 }
 
